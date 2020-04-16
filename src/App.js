@@ -6,16 +6,21 @@ import styles from './App.module.css';
 import { fetchData } from './api';
 
 class App extends Component{
+  state = {
+    data: {}
+  }
+
   // put async key first before method name because it a life cycle methods
   async componentDidMount(){
-    const data = await fetchData();
+    const getData = await fetchData();
 
-    console.log(data);
+    this.setState({ data: getData});
   }
   render(){
+    const { data } = this.state.data
     return(
       <div className={styles.container}>
-        <Cards />
+        <Cards data={data} />
         <Chart />
         <CountryPicker />
       </div>
