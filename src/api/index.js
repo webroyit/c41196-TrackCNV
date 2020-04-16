@@ -4,8 +4,15 @@ const url = 'https://covid19.mathdro.id/api';
 
 export const fetchData = async () => {
     try{
-        const res = await axios.get(url);
-        return res;
+        // destructured
+        const { data: {confirmed, recovered, deaths, lastUpdate} } = await axios.get(url);
+        const newData = {
+            confirmed,
+            recovered,
+            deaths,
+            lastUpdate
+        }
+        return newData;
 
     } catch(error){
         
