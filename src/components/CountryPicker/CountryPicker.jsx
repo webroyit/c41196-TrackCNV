@@ -3,19 +3,21 @@ import { NativeSelect, FormControl } from '@material-ui/core';
 
 import styles from './CountryPicker.module.css';
 
-import { countries } from '../../api';
+import { fetchCountries } from '../../api';
 
 const CountryPicker = () => {
     const [fetchedCountries, setFetechCountries] = useState([]);
 
     useEffect(() => {
-        const fetchCounties = async () => {
-            setFetechCountries(await countries());
+        const fetchAPI = async () => {
+            setFetechCountries(await fetchCountries());
         }
 
         // call the function
-        fetchCounties();
+        fetchAPI();
     }, [setFetechCountries]);
+
+    console.log(fetchedCountries)
 
     return(
         <FormControl className={styles.formControl}>
