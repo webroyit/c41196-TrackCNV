@@ -7,7 +7,8 @@ import { fetchData } from './api';
 
 class App extends Component{
   state = {
-    data: {}
+    data: {},
+    country: ''
   }
 
   // put async key first before method name because it a life cycle methods
@@ -16,13 +17,18 @@ class App extends Component{
 
     this.setState({ data: getData});
   }
+
+  handleCountryChange = async (country) => {
+    console.log(country);
+  }
+
   render(){
     const { data } = this.state;
 
     return(
       <div className={styles.container}>
         <Cards data={data} />
-        <CountryPicker />
+        <CountryPicker handleCountryChange={this.handleCountryChange} />
         <Chart />
       </div>
     )
